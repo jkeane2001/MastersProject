@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+</head>
+<body>
+    <h1>Login Page</h1>
+    <form method = "post">
+        <label for="username">Enter Username: </label><br>
+        <input type="text" id="username" name="username" required><br>
+        <label for="password">Enter Password: </label><br>
+        <input type="password" id="password" name="password" required><br><br>
+        <input type="submit" value="Login" required>
+    </form><br>
+    {% if error %}
+        <p>{{ error }}</p>
+    {% endif %}
+    <a href="{{url_for('index')}}">Return to Index Page</a><br>
+    <a href="{{url_for('signup')}}">Don't have an account? Go to Signup Page</a>
+</body>
+</html>

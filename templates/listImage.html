@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>View Images</title>
+</head>
+<body>
+    <h1>View Images</h1>
+    <ul>
+      {% for imgID, imgName in images %}
+        <li><a href="{{ url_for('viewImage', imgID=imgID) }}">{{ imgName }}</a></li>
+      {% endfor %}
+    </ul>
+
+</body>
+</html>

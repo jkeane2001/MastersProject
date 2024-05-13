@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Photo Editor</title>
+    <style>
+        #imageUploaded{
+            max-width: 35%;
+            height: auto;
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <h1>This will be the photo editing page</h1>
+    <h2>Upload An Image</h2>
+    <h3>Welcome, {{ session['username'] }}</h3>
+    <form action="{{ url_for('logout') }}" method = "post">
+        <input type="submit" value="Logout">
+    </form>
+    <div class = "photoEditPage">
+        <div class = "uploadForm">
+            <form action="/upload" method="post" enctype="multipart/form-data">
+                <input type="file" name="image" onchange="viewImage(event)">
+                <input type="text" name="imageName" placeholder="Enter image name: ">
+                <input type="submit" value="Upload Image">
+            </form>
+        </div>
+        <div class = "imageCanvas">
+            <img id = "imageUploaded" src="#" alt="Uploaded Image">
+        </div>
+        <div>
+            <a href = "{{ url_for('listImage') }}">View Images</a>
+        </div>
+    </div>
+    <script>
+        function viewImage(event){
+            var input = event.target;
+            var reader = new FileReader();
+            reader.onload = function(){
+                var imgElement = document.getElementById('imageUploaded');
+                imgElement.src = reader.result;
+                imgElement.style.display = 'block'
+            }
+            reader.readAsDataURL(input.files[0]);
+        }
+    </script>
+</body>
+</html>
